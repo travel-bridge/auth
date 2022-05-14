@@ -1,0 +1,23 @@
+@model LoginModel
+
+<p>Ligin</p>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <input type="email" asp-for="Email" placeholder="Email" autofocus/>
+    <input type="password" asp-for="Password" placeholder="Password" autocomplete="off"/>
+    <input type="checkbox" asp-for="RememberLogin"/>
+    <input type="hidden" asp-for="ReturnUrl"/>
+    <button type="submit">Login</button>
+</form>
+
+@Html.ActionLink(
+    "Register",
+    "Register",
+    "Account",
+    new { returnUrl = Model.ReturnUrl })
+
+@Html.ActionLink(
+    "Forgot password",
+    "ForgotPassword",
+    "Account",
+    new { returnUrl = Model.ReturnUrl })
