@@ -1,4 +1,4 @@
-using Auth.Services.Domain;
+using Auth.Services.Data;
 using Auth.Services.Infrastructure;
 using Auth.Services.Models;
 using IdentityServer4.Services;

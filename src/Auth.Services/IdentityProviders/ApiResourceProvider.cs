@@ -1,6 +1,6 @@
 using IdentityServer4.Models;
 
-namespace Auth.Services.Data;
+namespace Auth.Services.IdentityProviders;
 
 public static class ApiResourceProvider
 {

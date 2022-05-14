@@ -1,5 +1,5 @@
 using Auth.Services.Data;
-using Auth.Services.Domain;
+using Auth.Services.IdentityProviders;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
