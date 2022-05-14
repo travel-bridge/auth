@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Services", "src\Auth.Services\Auth.Services.csproj", "{69766EEE-702C-4C9C-A94B-48048EF2C922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Migrator", "src\Auth.Migrator\Auth.Migrator.csproj", "{36F65623-EC99-4E38-82F9-E83D61B6739E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.MvcClient", "src\Auth.MvcClient\Auth.MvcClient.csproj", "{0B5C8C78-D707-44E4-A141-1C490A5F4F53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69766EEE-702C-4C9C-A94B-48048EF2C922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69766EEE-702C-4C9C-A94B-48048EF2C922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69766EEE-702C-4C9C-A94B-48048EF2C922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69766EEE-702C-4C9C-A94B-48048EF2C922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36F65623-EC99-4E38-82F9-E83D61B6739E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36F65623-EC99-4E38-82F9-E83D61B6739E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36F65623-EC99-4E38-82F9-E83D61B6739E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36F65623-EC99-4E38-82F9-E83D61B6739E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
