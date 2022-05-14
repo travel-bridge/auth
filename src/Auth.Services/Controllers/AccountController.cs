@@ -106,7 +106,7 @@ public class AccountController : Controller
             "ConfirmEmail",
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
-            Uri.UriSchemeHttps);
+            Request.Scheme);
         // TODO: Send email
 
         return View("Login", new LoginModel { ReturnUrl = model.ReturnUrl });
@@ -156,7 +156,7 @@ public class AccountController : Controller
             "ResetPassword",
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
-            Uri.UriSchemeHttps);
+            Request.Scheme);
         // TODO: Send email
 
         return View("ResetPasswordCodeSent");
