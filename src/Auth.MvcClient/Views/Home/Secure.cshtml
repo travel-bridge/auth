@@ -1,0 +1,5 @@
+﻿@using Microsoft.AspNetCore.Authentication
+
+<p>Secure</p>
+
+<p>@((await Context.AuthenticateAsync()).Properties?.Items[".Token.access_token"])</p>

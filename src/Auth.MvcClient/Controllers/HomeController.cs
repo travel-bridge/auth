@@ -12,7 +12,7 @@ namespace Auth.MvcClient.Controllers
         }
         
         [Authorize]
-        public IActionResult Private()
+        public IActionResult Secure()
         {
             return View();
         }
