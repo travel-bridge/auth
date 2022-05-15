@@ -1,16 +1,11 @@
-using Auth.Services.Data;
+using Auth.Infrastructure;
+using Auth.Infrastructure.Models;
 using Auth.Services.IdentityProviders;
-using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-
-var connectionString = builder.Configuration.GetConnectionString("AuthDatabase")
-    ?? throw new InvalidOperationException("Connection string is not configured.");
-builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connectionString));
-
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();

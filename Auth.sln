@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Migrator", "src\Auth.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.MvcClient", "src\Auth.MvcClient\Auth.MvcClient.csproj", "{0B5C8C78-D707-44E4-A141-1C490A5F4F53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Infrastructure", "src\Auth.Infrastructure\Auth.Infrastructure.csproj", "{089DC184-B01A-4CDD-8FD3-F33E19865FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B5C8C78-D707-44E4-A141-1C490A5F4F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089DC184-B01A-4CDD-8FD3-F33E19865FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089DC184-B01A-4CDD-8FD3-F33E19865FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089DC184-B01A-4CDD-8FD3-F33E19865FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089DC184-B01A-4CDD-8FD3-F33E19865FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
