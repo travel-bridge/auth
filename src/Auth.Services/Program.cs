@@ -29,7 +29,9 @@ var identityBuilder = builder.Services
 // TODO: Configure production SigningCredential
 identityBuilder.AddDeveloperSigningCredential();
 
-// TODO: Add Health Checks
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("AuthDatabase")
+        ?? throw new InvalidOperationException("Connection string is not configured."));
 
 var app = builder.Build();
 app.UseStaticFiles();
@@ -37,6 +39,6 @@ app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
 app.MapDefaultControllerRoute();
-// TODO: Map Health Checks
+app.UseHealthChecks("/health");
 
 await app.RunAsync();
