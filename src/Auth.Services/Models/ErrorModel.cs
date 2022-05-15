@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Auth.Services.Models;
 
-// TODO: Использовать во всех View("Error")
+// TODO: Use it in all View("Error")
 public class ErrorModel
 {
     [Required]
