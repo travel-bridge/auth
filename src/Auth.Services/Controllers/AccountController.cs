@@ -30,7 +30,7 @@ public class AccountController : Controller
     public IActionResult Login(string returnUrl)
     {
         if (string.IsNullOrWhiteSpace(returnUrl))
-            return View("Error");
+            throw new ArgumentNullException(nameof(returnUrl));
         
         return View(new LoginModel { ReturnUrl = returnUrl });
     }
@@ -44,7 +44,8 @@ public class AccountController : Controller
         
         var context = await _interactionService.GetAuthorizationContextAsync(model.ReturnUrl);
         if (context is null)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to get authorization context by {model.ReturnUrl}.");
 
         var result = await _signInManager.PasswordSignInAsync(
             model.Email,
@@ -64,11 +65,12 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout(string logoutId)
     {
         if (string.IsNullOrWhiteSpace(logoutId))
-            return View("Error");
+            throw new ArgumentNullException(nameof(logoutId));
         
         var context = await _interactionService.GetLogoutContextAsync(logoutId);
         if (context is null)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to get logout context by {logoutId}.");
 
         if (User.Identity?.IsAuthenticated == true)
             await _signInManager.SignOutAsync();
@@ -80,7 +82,7 @@ public class AccountController : Controller
     public IActionResult Register(string returnUrl)
     {
         if (string.IsNullOrWhiteSpace(returnUrl))
-            return View("Error");
+            throw new ArgumentNullException(nameof(returnUrl));
         
         return View(new RegisterModel { ReturnUrl = returnUrl });
     }
@@ -115,18 +117,24 @@ public class AccountController : Controller
     [HttpGet]
     public async Task<IActionResult> ConfirmEmail(string returnUrl, string userId, string code)
     {
-        if (string.IsNullOrWhiteSpace(returnUrl)
-            || string.IsNullOrWhiteSpace(userId)
-            || string.IsNullOrWhiteSpace(code))
-            return View("Error");
+        if (string.IsNullOrWhiteSpace(returnUrl))
+            throw new ArgumentNullException(nameof(returnUrl));
+
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ArgumentNullException(nameof(userId));
         
+        if (string.IsNullOrWhiteSpace(code))
+            throw new ArgumentNullException(nameof(code));
+
         var user = await _userManager.FindByIdAsync(userId);
         if (user is null)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to find user by {userId} id.");
         
         var result = await _userManager.ConfirmEmailAsync(user, code);
         if (!result.Succeeded)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to confirm {user.Email} user email by {code} code.");
 
         return View("EmailConfirmed");
     }
@@ -135,7 +143,7 @@ public class AccountController : Controller
     public IActionResult ForgotPassword(string returnUrl)
     {
         if (string.IsNullOrWhiteSpace(returnUrl))
-            return View("Error");
+            throw new ArgumentNullException(nameof(returnUrl));
         
         return View(new ForgotPasswordModel { ReturnUrl = returnUrl });
     }
@@ -149,7 +157,8 @@ public class AccountController : Controller
         
         var user = await _userManager.FindByNameAsync(model.Email);
         if (user is null)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to find user by {model.Email} email.");
         
         var code = await _userManager.GeneratePasswordResetTokenAsync(user);
         var callbackUrl = Url.Action(
@@ -165,10 +174,14 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult ResetPassword(string returnUrl, string userId, string code)
     {
-        if (string.IsNullOrWhiteSpace(returnUrl)
-            || string.IsNullOrWhiteSpace(userId)
-            || string.IsNullOrWhiteSpace(code))
-            return View("Error");
+        if (string.IsNullOrWhiteSpace(returnUrl))
+            throw new ArgumentNullException(nameof(returnUrl));
+
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ArgumentNullException(nameof(userId));
+        
+        if (string.IsNullOrWhiteSpace(code))
+            throw new ArgumentNullException(nameof(code));
 
         return View(new ResetPasswordModel { ReturnUrl = returnUrl, UserId = userId, Code = code });
     }
@@ -182,7 +195,8 @@ public class AccountController : Controller
 
         var user = await _userManager.FindByIdAsync(model.UserId);
         if (user is null)
-            return View("Error");
+            throw new InvalidOperationException(
+                $"Failed to find user by {model.UserId} id.");
         
         var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
         if (!result.Succeeded)

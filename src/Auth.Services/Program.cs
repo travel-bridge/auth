@@ -1,6 +1,7 @@
 using Auth.Infrastructure;
 using Auth.Infrastructure.Models;
 using Auth.Services.IdentityProviders;
+using Auth.Services.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,11 @@ builder.Services.AddHealthChecks()
         ?? throw new InvalidOperationException("Connection string is not configured."));
 
 var app = builder.Build();
+app.UseExceptionHandler("/error");
+app.UseMiddleware<NotFoundHandlerMiddleware>();
+app.UseStaticFiles();
+app.UseHsts();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
