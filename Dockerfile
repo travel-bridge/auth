@@ -29,3 +29,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS migrator
 WORKDIR /app
 COPY --from=build /dist/migrator ./
 ARG revision=Unknown
+ENTRYPOINT [ "dotnet", "Auth.Migrator.dll" ]
