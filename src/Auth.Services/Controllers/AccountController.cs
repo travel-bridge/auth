@@ -1,4 +1,6 @@
-using Auth.Infrastructure.Models;
+using Auth.Events;
+using Auth.Services.Data;
+using Auth.Services.Events;
 using Auth.Services.Infrastructure;
 using Auth.Services.Models;
 using IdentityServer4.Services;
@@ -15,15 +17,18 @@ public class AccountController : Controller
     private readonly SignInManager<User> _signInManager;
     private readonly UserManager<User> _userManager;
     private readonly IIdentityServerInteractionService _interactionService;
+    private readonly IEventProducer _eventProducer;
 
     public AccountController(
         SignInManager<User> signInManager,
         UserManager<User> userManager,
-        IIdentityServerInteractionService interactionService)
+        IIdentityServerInteractionService interactionService,
+        IEventProducer eventProducer)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _interactionService = interactionService;
+        _eventProducer = eventProducer;
     }
 
     [HttpGet]
@@ -109,7 +114,11 @@ public class AccountController : Controller
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
             Request.Scheme);
-        // TODO: Send email
+        await _eventProducer.ProduceAsync(new ConfirmEmailEvent
+        {
+            Code = code,
+            CallbackUrl = callbackUrl!
+        });
 
         return View("Login", new LoginModel { ReturnUrl = model.ReturnUrl });
     }
@@ -166,7 +175,11 @@ public class AccountController : Controller
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
             Request.Scheme);
-        // TODO: Send email
+        await _eventProducer.ProduceAsync(new ResetPasswordEvent
+        {
+            Code = code,
+            CallbackUrl = callbackUrl!
+        });
 
         return View("ResetPasswordCodeSent");
     }
