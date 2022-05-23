@@ -13,9 +13,6 @@ public class NotFoundHandlerMiddleware
     {
         await _next(context);
         if (context.Response.StatusCode == StatusCodes.Status404NotFound)
-        {
-            context.Request.Path = "/not-found";
-            await _next(context);
-        }
+            context.Response.Redirect("/not-found");
     }
 }

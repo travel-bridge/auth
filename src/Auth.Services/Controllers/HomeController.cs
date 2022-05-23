@@ -9,20 +9,9 @@ namespace Auth.Services.Controllers;
 [AllowAnonymous]
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-    
     [HttpGet("error")]
     public IActionResult HandleError()
     {
-        var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-        if (exceptionHandlerPathFeature is not null)
-            _logger.LogError(exceptionHandlerPathFeature.Error, exceptionHandlerPathFeature.Error.Message);
-        
         return View("Error");
     }
 

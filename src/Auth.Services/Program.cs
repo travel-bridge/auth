@@ -53,7 +53,7 @@ builder.Services.AddHealthChecks()
         ?? throw new InvalidOperationException("Connection string is not configured."));
 
 var app = builder.Build();
-app.UseExceptionHandler("/error");
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<NotFoundHandlerMiddleware>();
 app.UseStaticFiles();
 app.UseHsts();
