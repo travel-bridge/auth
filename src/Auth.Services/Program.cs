@@ -23,8 +23,8 @@ builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddOptions<KafkaOptions>()
-    .Bind(builder.Configuration.GetSection(KafkaOptions.SectionKey))
+builder.Services.AddOptions<EventsOptions>()
+    .Bind(builder.Configuration.GetSection(EventsOptions.SectionKey))
     .ValidateDataAnnotations();
 
 builder.Services.AddSingleton<IEventProducer, EventProducer>();

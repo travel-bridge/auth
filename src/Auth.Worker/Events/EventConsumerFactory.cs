@@ -5,18 +5,18 @@ namespace Auth.Worker.Events;
 
 public class EventConsumerFactory : IEventConsumerFactory
 {
-    private readonly KafkaOptions _kafkaOptions;
+    private readonly EventsOptions _eventsOptions;
 
-    public EventConsumerFactory(IOptions<KafkaOptions> kafkaOptions)
+    public EventConsumerFactory(IOptions<EventsOptions> eventsOptions)
     {
-        _kafkaOptions = kafkaOptions.Value;
+        _eventsOptions = eventsOptions.Value;
     }
     
     public IEventConsumer Subscribe(string topic, string groupId)
     {
         var config = new ConsumerConfig
         {
-            BootstrapServers = _kafkaOptions.BootstrapServers,
+            BootstrapServers = _eventsOptions.BootstrapServers,
             GroupId = groupId,
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoCommit = false

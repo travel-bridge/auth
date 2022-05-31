@@ -10,11 +10,11 @@ public class EventProducer : IEventProducer
 {
     private readonly IProducer<Null, string> _producer;
 
-    public EventProducer(IOptions<KafkaOptions> kafkaOptions)
+    public EventProducer(IOptions<EventsOptions> eventsOptions)
     {
         var producerConfig = new ProducerConfig
         {
-            BootstrapServers = kafkaOptions.Value.BootstrapServers,
+            BootstrapServers = eventsOptions.Value.BootstrapServers,
             ClientId = Dns.GetHostName()
         };
 
@@ -33,7 +33,7 @@ public class EventProducer : IEventProducer
     {
         var json = JsonSerializer.Serialize(@event);
         var message = new Message<Null, string> { Value = json };
-        await _producer.ProduceAsync(@event.Topic, message, cancellationToken);
+        await _producer.ProduceAsync(@event.GetTopic(), message, cancellationToken);
     }
 
     public void Dispose()

@@ -2,8 +2,8 @@ using Auth.Worker.Events;
 using Auth.Worker.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddOptions<KafkaOptions>()
-    .Bind(builder.Configuration.GetSection(KafkaOptions.SectionKey))
+builder.Services.AddOptions<EventsOptions>()
+    .Bind(builder.Configuration.GetSection(EventsOptions.SectionKey))
     .ValidateDataAnnotations();
 
 builder.Services.AddSingleton<IEventConsumerFactory, EventConsumerFactory>();

@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Auth.Services.Events;
+namespace Auth.Worker.Events;
 
-public class KafkaOptions
+public class EventsOptions
 {
-    public const string SectionKey = "Kafka";
+    public const string SectionKey = "Events";
 
     [Required]
     public string BootstrapServers { get; set; } = null!;
