@@ -24,7 +24,7 @@ public class SendResetPasswordWorker : WorkerBase
             await ExecuteSafelyAsync(
                 async () =>
                 {
-                    await eventConsumer.ConsumeAndHandleAsync<ResetPasswordEvent>(
+                    await eventConsumer.ConsumeAndHandleAsync<ResetPasswordIntegrationEvent>(
                         @event =>
                         {
                             // TODO: Implement email sending

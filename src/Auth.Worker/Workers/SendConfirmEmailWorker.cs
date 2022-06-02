@@ -25,7 +25,7 @@ public class SendConfirmEmailWorker : WorkerBase
             await ExecuteSafelyAsync(
                 async () =>
                 {
-                    await eventConsumer.ConsumeAndHandleAsync<ConfirmEmailEvent>(
+                    await eventConsumer.ConsumeAndHandleAsync<ConfirmEmailIntegrationEvent>(
                         @event =>
                         {
                             // TODO: Implement email sending

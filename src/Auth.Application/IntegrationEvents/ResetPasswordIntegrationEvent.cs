@@ -1,6 +1,6 @@
 namespace Auth.Application.IntegrationEvents;
 
-public class ResetPasswordEvent : IIntegrationEvent
+public class ResetPasswordIntegrationEvent : IIntegrationEvent
 {
     public string Code { get; set; } = null!;
 

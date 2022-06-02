@@ -113,7 +113,7 @@ public class AccountController : Controller
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
             Request.Scheme);
-        await _eventProducer.ProduceAsync(new ConfirmEmailEvent
+        await _eventProducer.ProduceAsync(new ConfirmEmailIntegrationEvent
         {
             Code = code,
             CallbackUrl = callbackUrl!
@@ -174,7 +174,7 @@ public class AccountController : Controller
             "Account",
             new { returnUrl = model.ReturnUrl, userId = user.Id, code },
             Request.Scheme);
-        await _eventProducer.ProduceAsync(new ResetPasswordEvent
+        await _eventProducer.ProduceAsync(new ResetPasswordIntegrationEvent
         {
             Code = code,
             CallbackUrl = callbackUrl!
