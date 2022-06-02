@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddEvents(builder.Configuration);
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();

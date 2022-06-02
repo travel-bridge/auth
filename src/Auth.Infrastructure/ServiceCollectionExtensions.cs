@@ -9,14 +9,7 @@ namespace Auth.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddInfrastructure(
-        this IServiceCollection services,
-        IConfiguration configuration)
-        => services
-            .AddDatabase(configuration)
-            .AddEvents(configuration);
-
-    private static IServiceCollection AddDatabase(
+    public static IServiceCollection AddDatabase(
         this IServiceCollection services,
         IConfiguration configuration)
     {
@@ -34,7 +27,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    private static IServiceCollection AddEvents(
+    public static IServiceCollection AddEvents(
         this IServiceCollection services,
         IConfiguration configuration)
     {
