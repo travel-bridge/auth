@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Auth.Worker.Events;
+namespace Auth.Infrastructure.Events;
 
 public class EventsOptions
 {

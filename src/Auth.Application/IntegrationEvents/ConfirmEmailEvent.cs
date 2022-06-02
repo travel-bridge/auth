@@ -1,6 +1,6 @@
-namespace Auth.Events;
+namespace Auth.Application.IntegrationEvents;
 
-public class ConfirmEmailEvent : IEvent
+public class ConfirmEmailEvent : IIntegrationEvent
 {
     public string Code { get; set; } = null!;
 

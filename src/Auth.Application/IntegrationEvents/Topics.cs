@@ -1,4 +1,4 @@
-namespace Auth.Events;
+namespace Auth.Application.IntegrationEvents;
 
 public static class Topics
 {

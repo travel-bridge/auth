@@ -1,4 +1,4 @@
-namespace Auth.Worker.Events;
+namespace Auth.Application.IntegrationEvents;
 
 public interface IEventConsumerFactory
 {

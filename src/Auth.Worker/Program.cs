@@ -1,12 +1,8 @@
-using Auth.Worker.Events;
+using Auth.Infrastructure;
 using Auth.Worker.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddOptions<EventsOptions>()
-    .Bind(builder.Configuration.GetSection(EventsOptions.SectionKey))
-    .ValidateDataAnnotations();
-
-builder.Services.AddSingleton<IEventConsumerFactory, EventConsumerFactory>();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHostedService<SendConfirmEmailWorker>();
 builder.Services.AddHostedService<SendResetPasswordWorker>();
 builder.Services.AddHealthChecks();

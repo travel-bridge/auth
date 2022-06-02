@@ -1,33 +1,15 @@
-using Auth.Services.Data;
-using Auth.Services.Events;
+using Auth.Infrastructure;
+using Auth.Infrastructure.Database;
 using Auth.Services.IdentityProviders;
 using Auth.Services.Infrastructure;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-
-var connectionString = builder.Configuration.GetConnectionString("AuthDatabase")
-    ?? throw new InvalidOperationException("Connection string is not configured.");
-
-builder.Services.AddDbContext<DataContext>(
-    x => x.UseNpgsql(
-        connectionString,
-        options => options.EnableRetryOnFailure(
-            3,
-            TimeSpan.FromSeconds(10),
-            null)));
-
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
-
-builder.Services.AddOptions<EventsOptions>()
-    .Bind(builder.Configuration.GetSection(EventsOptions.SectionKey))
-    .ValidateDataAnnotations();
-
-builder.Services.AddSingleton<IEventProducer, EventProducer>();
 
 var identityBuilder = builder.Services
     .AddIdentityServer(options =>

@@ -1,7 +1,8 @@
+using Auth.Application.IntegrationEvents;
 using Confluent.Kafka;
 using Microsoft.Extensions.Options;
 
-namespace Auth.Worker.Events;
+namespace Auth.Infrastructure.Events;
 
 public class EventConsumerFactory : IEventConsumerFactory
 {

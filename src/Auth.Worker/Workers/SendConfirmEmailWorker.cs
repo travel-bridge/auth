@@ -1,5 +1,4 @@
-using Auth.Events;
-using Auth.Worker.Events;
+using Auth.Application.IntegrationEvents;
 
 namespace Auth.Worker.Workers;
 

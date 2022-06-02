@@ -1,6 +1,5 @@
-using Auth.Events;
-using Auth.Services.Data;
-using Auth.Services.Events;
+using Auth.Application.IntegrationEvents;
+using Auth.Infrastructure.Database;
 using Auth.Services.Infrastructure;
 using Auth.Services.Models;
 using IdentityServer4.Services;
