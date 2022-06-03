@@ -1,10 +1,6 @@
 namespace Auth.Application.IntegrationEvents;
 
-public class ResetPasswordIntegrationEvent : IIntegrationEvent
+public record ResetPasswordIntegrationEvent(string Code, string CallbackUrl) : IIntegrationEvent
 {
-    public string Code { get; set; } = null!;
-
-    public string CallbackUrl { get; set; } = null!;
-    
     public string GetTopic() => Topics.ResetPassword;
 }
