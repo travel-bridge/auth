@@ -28,6 +28,9 @@ var identityBuilder = builder.Services
         ?? throw new InvalidOperationException("Identity clients are not configured."))
     .AddAspNetIdentity<User>();
 
+if (builder.Environment.IsDevelopment())
+    identityBuilder.AddTestUsers(TestUserProvider.GetTestUsers());
+
 // TODO: Configure production SigningCredential
 identityBuilder.AddDeveloperSigningCredential();
 
