@@ -22,6 +22,14 @@ public static class ApiResourceProvider
                     "payment.read",
                     "payment.write"
                 }
+            },
+            new("files", "Files")
+            {
+                Scopes = new[]
+                {
+                    "files.read",
+                    "files.write"
+                }
             }
         };
 }

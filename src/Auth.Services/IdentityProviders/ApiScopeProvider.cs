@@ -10,6 +10,8 @@ public static class ApiScopeProvider
             new("excursions.read", "Read excursions"),
             new("excursions.write", "Write excursions"),
             new("payment.read", "Read payment"),
-            new("payment.write", "Write payment")
+            new("payment.write", "Write payment"),
+            new("files.read", "Read files"),
+            new("files.write", "Write files")
         };
 }
