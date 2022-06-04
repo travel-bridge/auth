@@ -31,8 +31,10 @@ var identityBuilder = builder.Services
 if (builder.Environment.IsDevelopment())
     identityBuilder.AddTestUsers(TestUserProvider.GetTestUsers());
 
+if (builder.Environment.IsDevelopment())
+    identityBuilder.AddDeveloperSigningCredential();
+
 // TODO: Configure production SigningCredential
-identityBuilder.AddDeveloperSigningCredential();
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("AuthDatabase")
@@ -42,8 +44,13 @@ var app = builder.Build();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<NotFoundHandlerMiddleware>();
 app.UseStaticFiles();
-app.UseHsts();
-app.UseHttpsRedirection();
+
+if (!builder.Environment.IsDevelopment())
+{
+    app.UseHsts();
+    app.UseHttpsRedirection();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
