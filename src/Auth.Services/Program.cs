@@ -43,7 +43,6 @@ builder.Services.AddHealthChecks()
 var app = builder.Build();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<NotFoundHandlerMiddleware>();
-app.UseStaticFiles();
 
 if (!builder.Environment.IsDevelopment())
 {
