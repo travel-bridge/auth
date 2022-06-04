@@ -29,12 +29,16 @@ var identityBuilder = builder.Services
     .AddAspNetIdentity<User>();
 
 if (builder.Environment.IsDevelopment())
-    identityBuilder.AddTestUsers(TestUserProvider.GetTestUsers());
-
-if (builder.Environment.IsDevelopment())
+{
+    identityBuilder
+        .AddTestUsers(TestUserProvider.GetTestUsers())
+        .AddDeveloperSigningCredential();
+}
+else
+{
+    // TODO: Configure production SigningCredential
     identityBuilder.AddDeveloperSigningCredential();
-
-// TODO: Configure production SigningCredential
+}
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("AuthDatabase")
