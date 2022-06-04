@@ -9,7 +9,8 @@ builder.Services
     .AddCookie("cookies")
     .AddOpenIdConnect("oidc", options =>
     {
-        options.Authority = "https://localhost:5001";
+        options.RequireHttpsMetadata = false;
+        options.Authority = "http://localhost:8010";
         options.ClientId = "b3221bd2-82c1-40b3-800d-51010cc1d4b1";
         options.ClientSecret = "ef295c8f-f102-4f1d-b8b4-318ce94569f8";
         options.ResponseType = "code";
