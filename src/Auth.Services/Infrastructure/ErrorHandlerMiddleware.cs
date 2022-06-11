@@ -3,13 +3,17 @@ namespace Auth.Services.Infrastructure;
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
- 
-    public ErrorHandlerMiddleware(RequestDelegate next)
+    private readonly ILogger<ErrorHandlerMiddleware> _logger;
+
+    public ErrorHandlerMiddleware(
+        RequestDelegate next,
+        ILogger<ErrorHandlerMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
  
-    public async Task InvokeAsync(HttpContext context, ILogger<ErrorHandlerMiddleware> logger)
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {
@@ -17,7 +21,7 @@ public class ErrorHandlerMiddleware
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, ex.Message);
             context.Response.Redirect("/error");
         }
     }
