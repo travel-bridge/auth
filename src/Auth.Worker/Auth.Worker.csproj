@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Auth.Application\Auth.Application.csproj" />
-      <ProjectReference Include="..\Auth.Events\Auth.Events.csproj" />
       <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj" />
     </ItemGroup>
 
