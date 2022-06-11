@@ -15,9 +15,5 @@
       <ProjectReference Include="..\Auth.Events\Auth.Events.csproj" />
       <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Data" />
-    </ItemGroup>
   
 </Project>
