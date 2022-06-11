@@ -20,7 +20,7 @@ namespace Auth.MvcClient.Controllers
         [Authorize]
         public IActionResult Logout()
         {
-            return SignOut("Cookies", "oidc");
+            return SignOut("cookies", "oidc");
         }
     }
 }

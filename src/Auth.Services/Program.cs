@@ -28,17 +28,15 @@ var identityBuilder = builder.Services
         ?? throw new InvalidOperationException("Identity clients are not configured."))
     .AddAspNetIdentity<User>();
 
+var useTestUsers = builder.Configuration.GetSection("Identity:UseTestUsers").Get<bool>();
+if (useTestUsers)
+    identityBuilder.AddTestUsers(TestUserProvider.GetTestUsers());
+
 if (builder.Environment.IsDevelopment())
-{
-    identityBuilder
-        .AddTestUsers(TestUserProvider.GetTestUsers())
-        .AddDeveloperSigningCredential();
-}
+    identityBuilder.AddDeveloperSigningCredential();
 else
-{
     // TODO: Configure production SigningCredential
     identityBuilder.AddDeveloperSigningCredential();
-}
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("AuthDatabase")
