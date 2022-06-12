@@ -30,6 +30,14 @@ public static class ApiResourceProvider
                     "files.read",
                     "files.write"
                 }
+            },
+            new("profile", "Profile")
+            {
+                Scopes = new[]
+                {
+                    "profile.read",
+                    "profile.write"
+                }
             }
         };
 }

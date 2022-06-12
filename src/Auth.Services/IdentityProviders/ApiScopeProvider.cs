@@ -12,6 +12,8 @@ public static class ApiScopeProvider
             new("payment.read", "Read payment"),
             new("payment.write", "Write payment"),
             new("files.read", "Read files"),
-            new("files.write", "Write files")
+            new("files.write", "Write files"),
+            new("profile.read", "Read profile"),
+            new("profile.write", "Write profile")
         };
 }
