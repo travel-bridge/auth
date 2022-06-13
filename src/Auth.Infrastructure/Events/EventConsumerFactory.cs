@@ -1,4 +1,4 @@
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 using Confluent.Kafka;
 using Microsoft.Extensions.Options;
 

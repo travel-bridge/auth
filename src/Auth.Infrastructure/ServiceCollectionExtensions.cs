@@ -1,4 +1,4 @@
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 using Auth.Infrastructure.Database;
 using Auth.Infrastructure.Events;
 using Microsoft.EntityFrameworkCore;

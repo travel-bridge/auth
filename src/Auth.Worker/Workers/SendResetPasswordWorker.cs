@@ -1,4 +1,4 @@
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 
 namespace Auth.Worker.Workers;
 
@@ -24,7 +24,7 @@ public class SendResetPasswordWorker : WorkerBase
             await ExecuteSafelyAsync(
                 async () =>
                 {
-                    await eventConsumer.ConsumeAndHandleAsync<ResetPasswordIntegrationEvent>(
+                    await eventConsumer.ConsumeAndHandleAsync<ResetPasswordEvent>(
                         @event =>
                         {
                             // TODO: Implement email sending

@@ -1,4 +1,4 @@
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 using Auth.Infrastructure.Database;
 using Auth.Services.Infrastructure;
 using Auth.Services.Models;
@@ -123,7 +123,7 @@ public class AccountController : Controller
                     "Account",
                     new { returnUrl = model.ReturnUrl, userId = user.Id, code },
                     Request.Scheme);
-                await _eventProducer.ProduceAsync(new ConfirmEmailIntegrationEvent(code, callbackUrl!));
+                await _eventProducer.ProduceAsync(new ConfirmEmailEvent(code, callbackUrl!));
             }
 
             return result;
@@ -196,7 +196,7 @@ public class AccountController : Controller
                 "Account",
                 new { returnUrl = model.ReturnUrl, userId = user.Id, code },
                 Request.Scheme);
-            await _eventProducer.ProduceAsync(new ResetPasswordIntegrationEvent(code, callbackUrl!));
+            await _eventProducer.ProduceAsync(new ResetPasswordEvent(code, callbackUrl!));
         });
 
         return View("ResetPasswordCodeSent");

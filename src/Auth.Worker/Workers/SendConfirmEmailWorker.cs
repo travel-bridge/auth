@@ -1,4 +1,4 @@
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 
 namespace Auth.Worker.Workers;
 
@@ -25,7 +25,7 @@ public class SendConfirmEmailWorker : WorkerBase
             await ExecuteSafelyAsync(
                 async () =>
                 {
-                    await eventConsumer.ConsumeAndHandleAsync<ConfirmEmailIntegrationEvent>(
+                    await eventConsumer.ConsumeAndHandleAsync<ConfirmEmailEvent>(
                         @event =>
                         {
                             // TODO: Implement email sending

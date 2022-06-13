@@ -1,5 +1,5 @@
 using System.Text.Json;
-using Auth.Application.IntegrationEvents;
+using Auth.Application.Events;
 using Confluent.Kafka;
 
 namespace Auth.Infrastructure.Events;
@@ -16,7 +16,7 @@ public class EventConsumer : IEventConsumer
     public async Task ConsumeAndHandleAsync<TEvent>(
         Func<TEvent, Task> handle,
         CancellationToken cancellationToken = default)
-        where TEvent : IIntegrationEvent
+        where TEvent : IEvent
     {
         var consumeResult = _consumer.Consume(cancellationToken);
         var @event = JsonSerializer.Deserialize<TEvent>(consumeResult.Message.Value)

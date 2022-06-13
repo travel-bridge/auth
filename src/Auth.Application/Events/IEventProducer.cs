@@ -1,9 +1,9 @@
-namespace Auth.Application.IntegrationEvents;
+namespace Auth.Application.Events;
 
 public interface IEventProducer : IDisposable
 {
     Task ProduceAsync<TEvent>(
         TEvent @event,
         CancellationToken cancellationToken = default)
-        where TEvent : IIntegrationEvent;
+        where TEvent : IEvent;
 }
