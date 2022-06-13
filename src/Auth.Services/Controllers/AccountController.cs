@@ -123,7 +123,7 @@ public class AccountController : Controller
                     "Account",
                     new { returnUrl = model.ReturnUrl, userId = user.Id, code },
                     Request.Scheme);
-                await _eventProducer.ProduceAsync(new ConfirmEmailEvent(code, callbackUrl!));
+                await _eventProducer.ProduceAsync(new ConfirmEmailEvent(user.Email, code, callbackUrl!));
             }
 
             return result;
@@ -196,7 +196,7 @@ public class AccountController : Controller
                 "Account",
                 new { returnUrl = model.ReturnUrl, userId = user.Id, code },
                 Request.Scheme);
-            await _eventProducer.ProduceAsync(new ResetPasswordEvent(code, callbackUrl!));
+            await _eventProducer.ProduceAsync(new ResetPasswordEvent(user.Email, code, callbackUrl!));
         });
 
         return View("ResetPasswordCodeSent");

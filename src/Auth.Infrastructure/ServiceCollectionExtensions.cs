@@ -1,5 +1,7 @@
+using Auth.Application.Emails;
 using Auth.Application.Events;
 using Auth.Infrastructure.Database;
+using Auth.Infrastructure.Emails;
 using Auth.Infrastructure.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +40,19 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IEventProducer, EventProducer>();
         services.AddSingleton<IEventConsumerFactory, EventConsumerFactory>();
         
+        return services;
+    }
+
+    public static IServiceCollection AddEmails(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.AddOptions<EmailsOptions>()
+            .Bind(configuration.GetSection(EmailsOptions.SectionKey))
+            .ValidateDataAnnotations();
+
+        services.AddSingleton<IEmailSender, EmailSender>();
+
         return services;
     }
 }
